@@ -1,13 +1,13 @@
 var _ = require('underscore');
 
 var days = {
-  SUN: 0,
-  MON: 1,
-  TUE: 2,
-  WED: 3,
-  THU: 4,
-  FRI: 5,
-  SAT: 6
+  MON: 0,
+  TUE: 1,
+  WED: 2,
+  THU: 3,
+  FRI: 4,
+  SAT: 5,
+  SUN: 6
 };
 
 var daysInverse = _.invert(days);
@@ -185,13 +185,13 @@ function buildTimeline(intervals) {
 }
 
 Hours.DAY_NAMES = [
-  {short: "Sun", long: "Sunday"},
   {short: "Mon", long: "Monday"},
   {short: "Tue", long: "Tuesday"},
   {short: "Wed", long: "Wednesday"},
   {short: "Thu", long: "Thursday"},
   {short: "Fri", long: "Friday"},
-  {short: "Sat", long: "Saturday"}
+  {short: "Sat", long: "Saturday"},
+  {short: "Sun", long: "Sunday"}
 ];
 
 Hours.SHORT_DAY_NAMES = _.map(Hours.DAY_NAMES, function(day) { return day.short; });
@@ -274,10 +274,12 @@ Hours.prototype.humanize = function(options) {
 };
 
 Hours.prototype.within = function(time) {
-  var intervals, instant, parts, day;
+  var dayOfWeek, intervals, instant, parts, day;
 
   if(_.isDate(time)) {
-    intervals = this.hours[time.getDay()];
+    // convert day so that Monday is 0 and Sunday is 6
+    dayOfWeek = (time.getDay() + 6) % 7;
+    intervals = this.hours[dayOfWeek];
     instant   = timeToOffset(time);
   } else {
     parts     = time.split(","),

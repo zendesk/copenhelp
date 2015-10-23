@@ -23,13 +23,13 @@ describe("Hours", function() {
 
     it("should convert text times to offsets", function() {
       hours.hours.should.eql({
-        0: [[900,1800]],
-        1: [[900,1200], [1400,1700]],
+        0: [[900,1200], [1400,1700]],
+        1: [[900,1800]],
         2: [[900,1800]],
         3: [[900,1800]],
         4: [[900,1800]],
-        5: [[900,1800]],
-        6: [[900,1100], [1400, 1730]]
+        5: [[900,1100], [1400, 1730]],
+        6: [[900,1800]]
       });
     });
 
@@ -84,7 +84,7 @@ describe("Hours", function() {
       it("should convert '24 hours to 12am - 11:59pm'", function() {
         hours = new Hours();
         hours.addDay("Mon", "24 hours");
-        hours.hours[1].should.eql([[0, 2359]]);
+        hours.hours[0].should.eql([[0, 2359]]);
       });
     });
   });
@@ -104,13 +104,13 @@ describe("Hours", function() {
 
     it('converts to templatable objects', function() {
       hours.humanize().should.eql([
-        { day: 'Sunday', hours: '9am - 6pm' },
         { day: 'Monday', hours: '9am - 12pm, 2pm - 5pm' },
         { day: 'Tuesday', hours: '9am - 12am' },
         { day: 'Wednesday', hours: '9am - 6pm' },
         { day: 'Thursday', hours: null },
         { day: 'Friday', hours: '9am - 6pm' },
-        { day: 'Saturday', hours: '9am - 11am, 2pm - 5:30pm' }
+        { day: 'Saturday', hours: '9am - 11am, 2pm - 5:30pm' },
+        { day: 'Sunday', hours: '9am - 6pm' }
       ]);
     });
 
@@ -131,8 +131,8 @@ describe("Hours", function() {
       hours.addDay("Sat", "9AM-6PM");
 
       hours.hours.should.eql({
-        0: [[900,1800]],
-        1: [[900,1200], [1400,1700]],
+        0: [[900,1200], [1400,1700]],
+        1: [[900,1800]],
         2: [[900,1800]],
         3: [[900,1800]],
         4: [[900,1800]],
@@ -206,13 +206,13 @@ describe("Hours", function() {
 
     it("should collapse intervals", function() {
       merged.hours.should.eql({
-        0: [[900,1800]],
-        1: [[900,1200], [1400, 1700]],
+        0: [[900,1200], [1400, 1700]],
+        1: [[900,1800]],
         2: [[900,1800]],
         3: [[900,1800]],
         4: [[900,1800]],
-        5: [[900,1800]],
-        6: [[900, 1100], [1400,1730]]
+        5: [[900, 1100], [1400,1730]],
+        6: [[900,1800]]
       });
 
     });
