@@ -1,26 +1,44 @@
-@import 'shared/css/common.scss';
-@import 'vendor/css/normalize.min.scss';
-@import 'vendor/css/icons.scss';
-@import 'vendor/css/jquery.switch.scss';
+@import "app/css/reset.css";
+@import "shared/css/variables.scss";
+@import "shared/css/common.scss";
+@import "vendor/css/normalize.min.scss";
+@import "vendor/css/icons.scss";
+@import "vendor/css/jquery.switch.scss";
 
-@import 'app/css/about.scss';
-@import 'app/css/terms.scss';
-@import 'app/css/categories.scss';
-@import 'app/css/detail.scss';
-@import 'app/css/filter.scss';
-@import 'app/css/index.scss';
-@import 'app/css/feedback.scss';
-@import 'app/css/list.scss';
-@import 'app/css/nav.scss';
+@import "app/css/about.scss";
+@import "app/css/terms.scss";
+@import "app/css/categories.scss";
+@import "app/css/detail.scss";
+@import "app/css/filter.scss";
+@import "app/css/index.scss";
+@import "app/css/feedback.scss";
+@import "app/css/list.scss";
+@import "app/css/nav.scss";
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: "arial";
+  font-family: "Source Sans Pro", sans-serif;
+
   background-color: $background-color;
 }
 
 ul {
-  padding-left: 0;
   margin: 0;
+  padding-left: 0;
 }
 
 #linksf {
@@ -29,24 +47,25 @@ ul {
 }
 
 .btn-info {
-  border: 1px solid #1C5E79;
+  border: 1px solid #1c5e79;
 }
-button:focus, a:focus {
-  border: 2px solid #62919C !important;
-}
+
 footer {
   max-width: 650px;
   margin: 0 auto;
-  text-align: right;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 0 20px;
-  color: #ACACAC;
+
+  text-align: right;
+
+  color: #acacac;
 
   a {
-    color: #ACACAC;
     margin: 0 4px 0 4px;
+
     text-decoration: none;
+
+    color: #acacac;
   }
 }
-

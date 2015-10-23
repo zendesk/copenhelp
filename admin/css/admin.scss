@@ -1,9 +1,10 @@
-@import 'shared/css/common.scss';
-@import 'vendor/css/normalize.min.scss';
-@import 'vendor/css/icons.scss';
-@import 'vendor/css/bootstrap.min.scss';
+@import "shared/css/variables.scss";
+@import "shared/css/common.scss";
+@import "vendor/css/normalize.min.scss";
+@import "vendor/css/icons.scss";
+@import "vendor/css/bootstrap.min.scss";
 
-@import 'admin/css/list.scss';
+@import "admin/css/list.scss";
 
 #linksf {
   padding-top: $navbar-height;
@@ -26,17 +27,19 @@
 }
 
 #facilityForm {
-  .hours .dayError, .address-preview.error {
+  .hours .dayError,
+  .address-preview.error {
     color: red;
   }
 }
 
 .service-edit-row {
   margin: 0 20px 20px 0;
-  border-color: #DDDDDD;
-  border-style: solid;
-  border-width: 1px;
   padding: 10px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd;
 
   .hours {
     .day {
@@ -45,6 +48,7 @@
 
     .label-hour {
       padding-right: 10px;
+
       text-align: right;
     }
 
@@ -59,7 +63,7 @@
 }
 
 .service-edit-row label {
-  font-color: #333333;
+  font-color: #333;
 }
 
 #login {
@@ -70,8 +74,10 @@
   display: none;
 }
 
-#delete_facility { 
-  background-color: #52000A;
-  color: #FFFFFF;
+#delete_facility {
+  color: #fff;
+  background-color: #52000a;
 }
-.clear { clear: both; }
+.clear {
+  clear: both;
+}

@@ -1,32 +1,42 @@
-.categories-header, .search-header {
-  color: #666666;
+.categories-header,
+.search-header {
   font-size: 20px;
   font-weight: normal;
+
   margin: 0;
+
+  color: #666;
 }
 
 ul.categories {
   display: block;
-  margin: 2px 0 0 0;
-  padding-top: 5px;
 
   li {
-    padding-bottom: 10px;
-
     .btn {
-      @include gray-button;
-      cursor: pointer;
-      padding: 10px 0;
+      font-family: "Source Sans Pro", sans-serif;
+      line-height: 60px;
+
       width: 100%;
+      padding: 0;
+
+      cursor: pointer;
+      text-align: left;
+
+      border: none;
+      border-bottom: 1px solid #ddd;
+      outline: none;
+      background: #fff url("../img/chevron.svg") no-repeat;
+      background-position: right 20px center;
+    }
+
+    &:first-child {
+      .btn {
+        border-top: 1px solid #ddd;
+      }
     }
 
     i.category-icon {
       margin: 5px 10px;
     }
-  }
-
-  .chevron-container {
-    float: right;
-    margin-top: -2px;
   }
 }
