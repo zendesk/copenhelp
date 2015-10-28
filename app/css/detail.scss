@@ -1,66 +1,96 @@
+// .container {
+//   width: 95%;
+//   min-width: 290px;
+//   max-width: 700px;
+//   margin: ($navbar-height + 10px) auto 0 auto;
+//   padding-top: 5px;
+// }
+
 .container {
-  width: 95%;
-  max-width: 700px;
-  min-width: 290px;
-  margin: ($navbar-height + 10px) auto 0 auto;
-  padding-top: 5px;
+  font-size: 14px;
+  line-height: 16px;
+
+  margin-top: 70px;
+}
+
+.cpr {
+  color: $orange;
+  border-left: 2px solid $orange;
+  background: $bg-orange;
 }
 
 .notes {
-  background: #f3f3f3;
   padding: 8px;
+
   border-radius: 6px;
+  background: #f3f3f3;
 }
 
 .facility-name {
   font-size: 24px;
-  padding: 2px 0;
+
   margin-top: 6px;
+  padding: 2px 0;
 }
 
 .facility-info {
   font-size: 14px;
 
-  p { margin: 0; }
-  label { font-weight: bold; }
+  p {
+    margin: 0;
+  }
+  label {
+    font-weight: bold;
+  }
   a {
-    text-decoration: none;
+    display: block;
+
     width: 100%;
     height: 100%;
-    display: block;
+
+    text-decoration: none;
+
     color: inherit;
   }
 
-  .service-title { margin-top: 0; }
+  .service-title {
+    margin-top: 0;
+  }
 
   .title {
     margin: 12px 0 0 1px;
   }
 
-  .service-title, .title {
-    color: #666;
+  .service-title,
+  .title {
     font-size: 18px;
     font-weight: normal;
+
+    color: #666;
   }
 
   .icon-right-open {
     color: #909090;
   }
 
-  .inset { @include inset; }
+  .inset {
+    @include inset;
+  }
 
   .inset-gmap {
-    @include inset;
-    border-radius: 6px;
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0 20px 0;
     padding: 0;
+
+    border-radius: 6px;
+
+    @include inset;
 
     p {
       padding: 8px 8px 8px 12px;
     }
 
     .destination {
-      border-top: 1px solid #DDD;
+      border-top: 1px solid #ddd;
     }
 
     &:active {
@@ -68,37 +98,48 @@
     }
   }
   .inset-website {
-    @include inset;
-    border-radius: 0px;
-    border-top: none;
-    color: black;
     text-decoration: none;
+
+    color: black;
+    border-top: none;
+    border-radius: 0;
+
+    @include inset;
     span {
-      width: 50%;
-      text-overflow: ellipsis;
-      -moz-text-overflow: ellipsis;
-      -o-text-overflow: ellipsis;
-      overflow: hidden;
       display: inline-block;
+      overflow: hidden;
+
+      width: 50%;
+
       vertical-align: top;
       white-space: no-wrap;
+           text-overflow: ellipsis;
+
       color: #777;
+
+      -moz-text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
     }
   }
 
   .contact-info div.inset-header:nth-of-type(1) {
-    border-radius: 6px 6px 0 0;
     margin-top: 20px;
+
+    border-radius: 6px 6px 0 0;
   }
 
   .inset-call {
-    @include inset;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
     margin-top: -1px;
     margin-bottom: 0;
-    border-bottom: 1px solid #DDD;
-    a { font-weight: bold; }
+
+    border-bottom: 1px solid #ddd;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    @include inset;
+    a {
+      font-weight: bold;
+    }
     &:active {
       background-color: #ddd;
     }
@@ -114,37 +155,50 @@
   .call-info {
     margin-top: 5px;
     margin-left: 25px;
+
     color: #777;
   }
 
   .inset-directions {
-    cursor: pointer;
-    @include inset;
-    border-radius: 0 0 6px 6px;
-    border-top: none;
     margin-top: -1px;
 
-    a { font-weight: bold; }
-    label { cursor: pointer; }
+    cursor: pointer;
+
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+
+    @include inset;
+
+    a {
+      font-weight: bold;
+    }
+    label {
+      cursor: pointer;
+    }
     &:active {
       background-color: #ddd;
     }
   }
 
   .inset-services {
-    @include inset;
     margin-top: 12px;
-    label { line-height: 2; }
+
+    @include inset;
+    label {
+      line-height: 2;
+    }
     p {
-        line-height: 1.5;
-        margin-bottom: 10px;
+      line-height: 1.5;
+
+      margin-bottom: 10px;
     }
   }
 
   .open-hours {
+    font-size: 14px;
+
     margin-bottom: 10px;
     padding: 5px;
-    font-size: 14px;
   }
 }
 
@@ -152,5 +206,6 @@
 #detail-gmap {
   height: 180px;
   padding: 1px;
-  border-bottom: 1px solid #DDD;
+
+  border-bottom: 1px solid #ddd;
 }

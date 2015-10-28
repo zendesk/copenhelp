@@ -136,7 +136,7 @@ li {
 
 .title {
   font-size: 20px;
-  font-weight: 200;
+  font-weight: 400;
 
   margin: 0;
 
@@ -145,46 +145,47 @@ li {
   color: #333;
 }
 
-.facility-list {
-  margin: 0;
-
-  .facility {
-    padding: 10px 0 10px 8px;
-
-    border-bottom: solid #ddd 1px;
-
-    .facility-item-link {
-      display: flex;
-      flex-direction: row;
-
-      .facility-item-box-info {
-        flex: 1 1 auto;
-        order: 0;
-      }
-
-      .facility-item-box-caret {
-        float: right;
-
-        margin-top: -10px;
-
-        align-self: center;
-        flex: 0 0 auto;
-        order: 1;
-
-        .chevron {
-          margin-top: 0;
-        }
-      }
-    }
-  }
-}
+// .facility-list {
+//   margin: 0;
+//
+//   .facility {
+//     margin: 0;
+//     // padding: 10px 0 10px 8px;
+//
+//     border-bottom: solid #ddd 1px;
+//
+//     .facility-item-link {
+//       display: flex;
+//       flex-direction: row;
+//
+//       .facility-item-box-info {
+//         flex: 1 1 auto;
+//         order: 0;
+//       }
+//
+//       .facility-item-box-caret {
+//         float: right;
+//
+//         margin-top: -10px;
+//
+//         align-self: center;
+//         flex: 0 0 auto;
+//         order: 1;
+//
+//         .chevron {
+//           margin-top: 0;
+//         }
+//       }
+//     }
+//   }
+// }
 
 .facility-services {
   font-size: 14px;
 
   text-transform: capitalize;
 
-  color: #aba9a9;
+  color: #666;
 }
 
 .right {
@@ -219,21 +220,73 @@ li {
   background-color: #f7d6d6;
 }
 
-// Icons
-.icon-desktop {
-  color: #cbaa4b;
-}
-.icon-droplet {
-  color: #7e7485;
-}
-.icon-food {
-  color: #9ea861;
-}
-.icon-home {
-  color: #62919c;
-}
-.icon-plus {
-  color: #a97a60;
+// // Icons
+// .icon-desktop {
+//   color: #cbaa4b;
+// }
+// .icon-droplet {
+//   color: #7e7485;
+// }
+// .icon-food {
+//   color: #9ea861;
+// }
+// .icon-home {
+//   color: #62919c;
+// }
+// .icon-plus {
+//   color: #a97a60;
+// }
+
+.navbar {
+  position: fixed;
+  z-index: 20000000;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: block;
+
+  height: 60px;
+  margin-bottom: 2px;
+
+  background: $red;
+  box-shadow: 0 2px 2px rgba(0,0,0,.2);
+  .left,
+  .right {
+    float: left;
+
+    width: 10%;
+    height: 60px;
+  }
+
+  .center {
+    float: left;
+
+    width: 80%;
+    height: 60px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 60px;
+
+      margin: 0;
+
+      text-align: center;
+
+      color: #fff;
+    }
+  }
+
+  .back {
+    float: left;
+
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    background: none;
+  }
 }
 
 .icon-left-open.back {
@@ -243,4 +296,74 @@ li {
   margin: 0 1px 0 -5px;
 
   color: #dadada;
+}
+
+.card {
+  margin: 4px;
+  padding: 15px;
+
+  background: $bg-white;
+  box-shadow: 0 0 3px rgba(0,0,0,.1), 0 2px 5px rgba(0,0,0,.1);
+
+  h1 {
+    font-size: 14px;
+
+    margin: 0 0 10px 0;
+
+    text-transform: uppercase;
+
+    color: $black;
+  }
+
+  hr {
+    border: none;
+    border-bottom: 1px solid $border-gray;
+  }
+
+  .action {
+    line-height: 30px;
+
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    label {
+      font-weight: 600;
+
+      float: right;
+
+      text-transform: uppercase;
+
+      color: $blue;
+    }
+  }
+}
+
+.map {
+  padding: 1px;
+}
+
+.directions {
+  font-weight: 600;
+  line-height: 36px;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  color: $blue;
+}
+
+.cpr-icon {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+
+  margin-right: 4px;
+  padding: 0 4px;
+
+  color: white;
+  border-radius: 3px;
+  background: $orange;
 }
