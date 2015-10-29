@@ -3,6 +3,13 @@
   <h1 class="facility-name">{{name}}</h1>
 
   <div class="facility-info">
+    {{#if required_id}}
+      <h2 class="title">Required ID</h2>
+      <div class="inset">
+        <p><span>ID</span> An ID is required to access these services</p>
+      </div>
+    {{/if}}
+
     <h2 class="title">Welcome</h2>
     <div class="inset">
       <p title="Who is this facility suitable for">{{demographics}}</p>
