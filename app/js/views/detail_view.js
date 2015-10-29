@@ -73,6 +73,13 @@ var DetailView = Backbone.View.extend({
       calculateDistance(facility, this.options.currentLocation, calculateDistanceCallback );
     }
 
+    // Make "Sunday" the last day of the week
+    _.each(facility.services, function(service) {
+      if (service.condensedHours[0].day === "Sun") {
+       service.condensedHours.push(service.condensedHours.shift());
+      }
+    });
+
     this.$el.html(this.template({
       facility: facility,
       isMobile: Features.isMobile()

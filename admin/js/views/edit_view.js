@@ -92,6 +92,12 @@ var EditView = Backbone.View.extend({
       [ { hours: hours.serialize() } ]
     );
     var preview = mergedHours.humanizeCondensed({shortDayNames: true});
+
+    // Make "Sunday" the last day of the week
+    if (preview[0].day === "Sun") {
+      preview.push(preview.shift());
+    }
+
     var template = require('../../../shared/js/templates/_open_hours.hbs');
     var html = template({ condensedHours: preview });
 
@@ -345,6 +351,13 @@ var EditView = Backbone.View.extend({
     var templateData = this.model.presentJSON();
 
     templateData.services.forEach(function(service) {
+
+      // Make "Sunday" the last day of the week
+      Hours.DAY_NAMES.push(Hours.DAY_NAMES.shift());
+      if (service.condensedHours[0].day === "Sun") {
+        service.condensedHours.push(service.condensedHours.shift());
+      }
+
       service.days = Hours.DAY_NAMES.map(function(day, index) {
         return {short: day.short, long: day.long, hours: service.openHours[index].hours};
       });
