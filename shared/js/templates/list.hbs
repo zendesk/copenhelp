@@ -8,7 +8,7 @@
       <a href="#/detail/{{objectId}}" class="facility-item-link" title="Click to see more details about {{name}}">
         <div class="facility-item-box-info">
           <div>
-            <p class="facility-name">{{name}}</p>
+            <p class="facility-name">{{#if required_id}}<span>ID</span>{{/if}} {{name}}</p>
           </div>
             <span class="facility-info">
               <span class="label-status {{status}}">{{status}}</span>
