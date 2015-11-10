@@ -1,91 +1,82 @@
 {{#with facility}}
-<div class="container">
-  <h1 class="facility-name">{{name}}</h1>
 
-  <div class="facility-info">
-    {{#if required_id}}
-      <h2 class="title">Required ID</h2>
-      <div class="inset">
-        <p><span>ID</span> An ID is required to access these services</p>
-      </div>
-    {{/if}}
-
-    <h2 class="title">Welcome</h2>
-    <div class="inset">
-      <p title="Who is this facility suitable for">{{demographics}}</p>
-    </div>
-
-    <h2 class="title">Services</h2>
-    <div class="inset">
-      {{#each distinctCategories}}
-        <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
-      {{/each}}
-    </div>
-
-    <div class="inset-gmap" title="Map &amp; Directions">
-      <a title="Click to open Google Maps in a new window with directions to facility" id="link_gmap"><div id="detail-gmap"></div></a>
-      <p title="Facility Address">{{address}} {{#if cross_street}}({{cross_street}}){{/if}}</p>
-      {{#if distanceText}}
-        <p title="Distance from current location to facility" class="destination" id="distance_{{objectId}}">{{distanceText}}</p>
-      {{/if}}
-      {{#if durationText}}
-        <p title="Time from current location to facility" class="destination" id="duration_{{objectId}}">{{durationText}}</p>
-      {{/if}}
-    </div>
-
-    <div title="Facility contact info" class="contact-info">
-      {{#each phoneNumbers}}
-        <div title="Facility phone number" class="inset-call inset-header">
-          <div>
-            <i class="icon-phone"></i>
-            <label>Call</label>
-            {{#if ../../isMobile}}
-              <a href="tel:{{number}}">{{number}}</a>
-            {{else}}
-              <span>{{number}}</span>
-            {{/if}}
-            <i class="icon-right-open right"></i>
-          </div>
-          {{#if info}}
-            <div class="call-info">{{info}}</div>
-          {{/if}}
-        </div>
-      {{/each}}
-
-      {{#if website}}
-        <div title="Facility website" class="inset-website inset-header">
-          <a href="{{website}}" target="_blank">
-            <div>
-              <i class="icon-link"></i>
-              <label>Website</label>
-              <span>{{website}}</span>
-              <i class="icon-right-open right"></i>
-            </div>
-          </a>
-        </div>
-      {{/if}}
-
-      <button class="inset-directions">
-        <i class="icon-compass"></i>
-        <label>Directions</label>
-        <i class="icon-right-open right"></i>
-      </button>
-    </div>
-
-    <ul title="Services details">
-    {{#each services}}
-      <li title="Service: {{name}}" class="inset-services">
-        <h3 class="service-title">{{name}}</h3>
-        <p>{{description}}</p>
-        {{> openHours}}
-        {{#if notes}}
-          <div class="notes">
-            <label>Notes:</label>
-           <p>{{notes}}</p>
-          </div>
-        {{/if}}
-      </li>
-    {{/each}}
-    </ul>
+<div class="navbar">
+  <div class="left">
+    <button type="button" name="button" onclick="window.history.back()" class="back"><img src="../img/chevron-white.svg" alt="Back" /></button>
   </div>
+  <div class="center">
+    <h1>{{name}}</h1>
+  </div>
+  <div class="right">
+  </div>
+</div>
+
+<div class="container">
+
+  {{#if required_id}}
+    <div class="card cpr">
+      <span class="cpr-icon">ID</span> A Danish ID is required here
+    </div>
+  {{/if}}
+
+  <div class="card">
+    <h1>Who's welcome</h1>
+    <p>{{demographics}}</p>
+  </div>
+
+  <div class="card">
+    <h1>Services offered</h1>
+    {{#each distinctCategories}}
+      <span class="facility-services"><i class="category-icon icon-{{icon}}"></i>{{title}}</span>
+    {{/each}}
+  </div>
+
+  <div class="card map">
+    <a title="Click to open Google Maps in a new window with directions to facility" id="link_gmap">
+      <div id="detail-gmap"></div>
+      <div class="directions">
+        <i class="icon-compass"></i> Get directions
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <h1>Contact information</h1>
+    <p>{{address}}</p>
+    <hr>
+
+    {{#each phoneNumbers}}
+      <a href="tel:{{number}}" class="action">
+        <i class="icon-phone"></i>
+        {{number}}
+        <label>Call now</label>
+      </a>
+    {{/each}}
+
+    {{#if website}}
+      <a href="{{website}}" class="action" target="_blank">
+        <i class="icon-link"></i>
+        <span>{{website}}</span>
+        <label>Visit website</label>
+        <i class="icon-right-open right"></i>
+      </a>
+    {{/if}}
+  </div>
+
+  {{#each services}}
+    <div class="card">
+      <h1>{{name}}</h1>
+      <p>{{description}}</p>
+      <hr>
+      {{> openHours}}
+      {{#if notes}}
+      <hr>
+        <div class="notes">
+          <label>Notes:</label>
+         <p>{{notes}}</p>
+        </div>
+      {{/if}}
+    </div>
+  {{/each}}
+
 {{/with}}
