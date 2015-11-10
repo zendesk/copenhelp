@@ -78,6 +78,12 @@
         <label class ="checkbox"> <input type="checkbox" name="age" id="age_S" value="S"> Senior Citizens (60+) </label>
       </div>
     </div>
+    <div class="control-group">
+      <label class="control-label" for="required_id">ID</label>
+      <div class="controls hasPopover" style="width:150px;" data-trigger="hover" data-content="Whether the identification card is mandatory">
+        <label class="checkbox"> <input type="checkbox" name="required_id" value="true" {{#if required_id}}checked{{/if}}> Required </label>
+      </div>
+    </div>
     <div>
       <label class="control-label">Services</label>
       <div class="controls" id="services">

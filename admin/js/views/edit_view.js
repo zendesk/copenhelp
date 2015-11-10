@@ -332,6 +332,7 @@ var EditView = Backbone.View.extend({
       formValues.website = "http://" + formValues.website;
     }
     formValues.age = this.serializeAges();
+    formValues.required_id = formValues.required_id === 'true';
 
     var services = _.clone(formValues.services);
 
