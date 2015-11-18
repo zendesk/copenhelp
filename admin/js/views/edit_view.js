@@ -174,7 +174,7 @@ var EditView = Backbone.View.extend({
   },
 
   setupServiceElements: function(container) {
-    $(container).find("input.day").first().attr("placeholder", "example: 9am-3pm, 6pm-8pm");
+    $(container).find("input.day").first().attr("placeholder", "e.g.: 9:30 - 15:00, 18:00 - 20:00");
     $(container).find("input.day").blur(function(ev) {
       this.parseHourElement(new Hours(), ev.target, { validate: true });
       return true;
