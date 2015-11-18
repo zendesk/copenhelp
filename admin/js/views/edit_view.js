@@ -355,7 +355,7 @@ var EditView = Backbone.View.extend({
 
       // Make "Sunday" the last day of the week
       Hours.DAY_NAMES.push(Hours.DAY_NAMES.shift());
-      if (service.condensedHours[0].day === "Sun") {
+      if (service.condensedHours[0] && service.condensedHours[0].day === "Sun") {
         service.condensedHours.push(service.condensedHours.shift());
       }
 

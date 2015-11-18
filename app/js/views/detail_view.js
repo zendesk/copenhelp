@@ -75,7 +75,7 @@ var DetailView = Backbone.View.extend({
 
     // Make "Sunday" the last day of the week
     _.each(facility.services, function(service) {
-      if (service.condensedHours[0].day === "Sun") {
+      if (service.condensedHours[0] && service.condensedHours[0].day === "Sun") {
        service.condensedHours.push(service.condensedHours.shift());
       }
     });
