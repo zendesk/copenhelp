@@ -8,13 +8,13 @@ describe("Hours", function() {
 
   beforeEach(function() {
     hours = new Hours({
-      Sun: "9AM-6PM",
-      Mon: "9AM-12PM,2PM-5PM",
-      Tue: "9AM-6PM",
-      Wed: "9AM-6PM",
-      Thu: "9AM-6PM",
-      Fri: "9AM-6PM",
-      Sat: "9:00AM-11:00AM,2pm-5:30pm"
+      Sun: "9-18:00",
+      Mon: "9-12:00,14:00-17",
+      Tue: "9:00-18:00",
+      Wed: "9-18",
+      Thu: "00:00-23:59",
+      Fri: "9:00-18:00",
+      Sat: "9:00-11:00,14-17:30"
     });
 
   });
@@ -27,7 +27,7 @@ describe("Hours", function() {
         1: [[900,1200], [1400,1700]],
         2: [[900,1800]],
         3: [[900,1800]],
-        4: [[900,1800]],
+        4: [[0,2359]],
         5: [[900,1800]],
         6: [[900,1100], [1400, 1730]]
       });
@@ -43,35 +43,33 @@ describe("Hours", function() {
       });
 
       it("should deal with bad intervals", function() {
-        (function() { hours.addDay("Mon", "9PM-9PM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9-9"); }).should.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "9PM-9AM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9-9"); }).should.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "4:30PM-12:00AM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "4:30-12:00"); }).should.not.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "9:30AM-12:00AM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9:30-12:00"); }).should.not.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "9:30AM-12:30AM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9:30-1:30"); }).should.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "12:00AM-11:59PM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00-23:59"); }).should.not.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "12:00AM-12:00AM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00-00:00"); }).should.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "12:00AM-50PM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00-50"); }).should.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "12:00AM-50:00PM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00-50:00"); }).should.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "12:00AM-50AM"); }).should.throwError(/Invalid time/);
-
-      (function() { hours.addDay("Mon", "12:00AM-50:00AM"); }).should.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "12:00-50"); }).should.throwError(/Invalid time/);
       });
 
       it("should allow spaces", function() {
-        (function() { hours.addDay("Mon", "9am-10am, 11am-12pm"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9-10, 11-12"); }).should.not.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "9 am-10 am, 11 am-12 pm"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9 -10 , 11 -12 "); }).should.not.throwError(/Invalid time/);
 
-        (function() { hours.addDay("Mon", "9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM"); }).should.not.throwError(/Invalid time/);
+        (function() { hours.addDay("Mon", "9:00  - 12:00 , 14:00  - 17:00 "); }).should.not.throwError(/Invalid time/);
 
       });
 
@@ -92,25 +90,25 @@ describe("Hours", function() {
   describe("#humanize", function() {
     beforeEach(function() {
       hours = new Hours({
-        Sun: "9AM-6PM",
-        Mon: "9AM-12PM,2PM-5PM",
-        Tue: "9AM-12AM",
-        Wed: "9AM-6PM",
-        Fri: "9AM-6PM",
-        Sat: "9:00AM-11:00AM,2pm-5:30pm"
+        Sun: "9-18",
+        Mon: "9-12,14-17",
+        Tue: "9-12",
+        Wed: "9-18",
+        Fri: "0-18",
+        Sat: "9:00-11:00,14-17:30"
       });
     });
 
 
     it('converts to templatable objects', function() {
       hours.humanize().should.eql([
-        { day: 'Sunday', hours: '9am - 6pm' },
-        { day: 'Monday', hours: '9am - 12pm, 2pm - 5pm' },
-        { day: 'Tuesday', hours: '9am - 12am' },
-        { day: 'Wednesday', hours: '9am - 6pm' },
+        { day: 'Sunday', hours: '09:00 - 18:00' },
+        { day: 'Monday', hours: '09:00 - 12:00, 14:00 - 17:00' },
+        { day: 'Tuesday', hours: '09:00 - 12:00' },
+        { day: 'Wednesday', hours: '09:00 - 18:00' },
         { day: 'Thursday', hours: null },
-        { day: 'Friday', hours: '9am - 6pm' },
-        { day: 'Saturday', hours: '9am - 11am, 2pm - 5:30pm' }
+        { day: 'Friday', hours: '00:00 - 18:00' },
+        { day: 'Saturday', hours: '09:00 - 11:00, 14:00 - 17:30' }
       ]);
     });
 
@@ -122,21 +120,21 @@ describe("Hours", function() {
     });
 
     it("should add open hours per day", function() {
-      hours.addDay("Sun", "9AM-6PM");
-      hours.addDay("Mon", "9AM-12PM,2PM-5PM");
-      hours.addDay("Tue", "9AM-6PM");
-      hours.addDay("Wed", "9AM-6PM");
-      hours.addDay("Thu", "9AM-6PM");
-      hours.addDay("Fri", "9AM-6PM");
-      hours.addDay("Sat", "9AM-6PM");
+      hours.addDay("Sun", "9:12-18");
+      hours.addDay("Mon", "9-12,14-17");
+      hours.addDay("Tue", "09-18");
+      hours.addDay("Wed", "9:34-18");
+      hours.addDay("Thu", "00:00-23:59");
+      hours.addDay("Fri", "9-18:30");
+      hours.addDay("Sat", "9-18");
 
       hours.hours.should.eql({
-        0: [[900,1800]],
+        0: [[912,1800]],
         1: [[900,1200], [1400,1700]],
         2: [[900,1800]],
-        3: [[900,1800]],
-        4: [[900,1800]],
-        5: [[900,1800]],
+        3: [[934,1800]],
+        4: [[0,2359]],
+        5: [[900,1830]],
         6: [[900,1800]]
       });
 
@@ -146,9 +144,11 @@ describe("Hours", function() {
 
   describe("#within", function(){
     it("should work with strings", function() {
-      hours.within("Sun,10:30AM").should.equal(true);
-      hours.within("Mon,10:30AM").should.equal(true);
-      hours.within("Mon,12:30PM").should.equal(false);
+      hours.within("Sun,10:30").should.equal(true);
+      hours.within("Sun,9:30").should.equal(true);
+      hours.within("Thu,18:58").should.equal(true);
+      hours.within("Mon,10:30").should.equal(true);
+      hours.within("Mon,12:30").should.equal(false);
     });
 
     it("should work with dates", function() {
@@ -210,7 +210,7 @@ describe("Hours", function() {
         1: [[900,1200], [1400, 1700]],
         2: [[900,1800]],
         3: [[900,1800]],
-        4: [[900,1800]],
+        4: [[0,2359]],
         5: [[900,1800]],
         6: [[900, 1100], [1400,1730]]
       });
