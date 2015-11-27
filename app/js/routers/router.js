@@ -37,7 +37,6 @@ var Router = Backbone.Router.extend({
     'query':               'query',
     'detail/:id':          'detail',
     'about':               'about',
-    'feedback':            'feedback',
     'terms':               'terms',
     'filter':              'filter',
     'filter?:queryString': 'filter'
