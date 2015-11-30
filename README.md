@@ -20,4 +20,6 @@ Copenhelp is an ongoing collaboration between [Bespoke](http://www.bespokecph.co
 
 Copenhelp is a mobile web app designed to give this growing community of smartphone users instant access to relevant services on the go by surfacing crucial information like open hours, phone numbers, and Google Maps directions.
 
+Copenhelp is based on [Link SF](https://github.com/zendesk/linksf).
+
 Contact us at support@copenhelp.zendesk.com.
