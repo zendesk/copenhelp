@@ -38,7 +38,7 @@ function fetchDistanceAndDuration(origins, destinations, callback) {
       durationInTraffic: true,
       avoidHighways: true,
       avoidTolls: false,
-      unitSystem: google.maps.UnitSystem.IMPERIAL
+      unitSystem: google.maps.UnitSystem.METRIC
     }, callback );
 }
 
