@@ -1,7 +1,7 @@
 var Features          = require('../lib/features'),
     Hours             = require('cloud/models/hours'),
-    fetchLocation     = require('../../../shared/js/lib/fetch_location'),
-    calculateDistance = require('../../../shared/js/lib/distance').calculateDistance;
+    fetchLocation     = require('../lib/fetch_location'),
+    calculateDistance = require('../lib/distance').calculateDistance;
 
 function calculateDistanceCallback (walkingData, facility){
   if ( !walkingData ) return;

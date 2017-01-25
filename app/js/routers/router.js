@@ -1,9 +1,9 @@
-var BaseController        = require('../../../shared/js/lib/base_controller'),
+var BaseController        = require('../lib/base_controller'),
     Storage               = require('../lib/storage'),
     applicationController = new BaseController({ el: '#linksf' }),
-    facilities            = require('../../../shared/js/collections/facilities').instance(),
-    fetchLocation         = require('../../../shared/js/lib/fetch_location'),
-    parseParams           = require('../../../shared/js/lib/query_param_parser');
+    facilities            = require('../collections/facilities').instance(),
+    fetchLocation         = require('../lib/fetch_location'),
+    parseParams           = require('../lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
   beforeAllFilters: function() { return [ this.checkPrivateBrowsing ]; },
@@ -66,7 +66,7 @@ var Router = Backbone.Router.extend({
 
   query: function(queryString) {
     var parsedParams = parseParams(queryString),
-        ListView     = require('../../../shared/js/views/list_view');
+        ListView     = require('../views/list_view');
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
 
     applicationController.render(this.listView);
@@ -159,7 +159,7 @@ var Router = Backbone.Router.extend({
 
   _getFacility: function(id, done) {
     var facility = facilities.get(id),
-        query = require('../../../shared/js/lib/query');
+        query = require('../lib/query');
 
     if ( !facility ) {
       //Fetch Facility from backend if not in collection

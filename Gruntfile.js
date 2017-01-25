@@ -6,7 +6,6 @@ module.exports = function(grunt) {
       files: [
         'app/**/*.js',
         'test/**/*.js',
-        'shared/**/*.js',
         'server/**/*.js'
       ],
       options: {
@@ -52,7 +51,6 @@ module.exports = function(grunt) {
       files: [
         'Gruntfile.js',
         'app/**/*',
-        'shared/**/*',
         'server/**/*',
         'vendor/**/*',
         '!vendor/**/*.min.*',
@@ -70,10 +68,10 @@ module.exports = function(grunt) {
       options: {transform: ['hbsfy']},
       app: {src: 'app/js/app.js', dest: 'tmp/app.js',
         options: {alias: [
-          './shared/js/models/facility:cloud/models/facility',
-          './shared/js/models/service:cloud/models/service',
-          './shared/js/models/hours:cloud/models/hours',
-          './shared/js/lib/categories:cloud/lib/categories'
+          './app/js/models/facility:cloud/models/facility',
+          './app/js/models/service:cloud/models/service',
+          './app/js/models/hours:cloud/models/hours',
+          './app/js/lib/categories:cloud/lib/categories'
         ]}
       }
     },

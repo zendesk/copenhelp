@@ -1,5 +1,5 @@
-var fetchLocation = require('../../../shared/js/lib/fetch_location'),
-    navigate      = require('../../../shared/js/lib/navigate');
+var fetchLocation = require('../lib/fetch_location'),
+    navigate      = require('../lib/navigate');
 
 var IndexView = Backbone.View.extend({
   options: {},

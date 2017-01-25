@@ -1,4 +1,4 @@
-var navigate = require('../../../shared/js/lib/navigate');
+var navigate = require('../lib/navigate');
 
 function setFilterOptions(view) {
   var params       = view.options.params,
