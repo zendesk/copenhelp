@@ -227,17 +227,6 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'build', src: '*', dest: ''}
         ]
       }
-    },
-
-    shell: {
-      parse: {
-        command: 'parse deploy',
-        options: {
-          execOptions: {
-            cwd: 'server'
-          }
-        }
-      }
     }
   });
 
@@ -256,7 +245,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-aws-s3');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadTasks('tasks');
 
   grunt.registerTask('build:common', [
     'clean',
@@ -283,24 +271,17 @@ module.exports = function(grunt) {
     'cachebuster',
     'qunit'
   ]);
-
-  grunt.registerTask('parse:deploy', ['parse:config', 'shell:parse']);
-  grunt.registerTask('parse:deploy:dev', ['env:dev', 'parse:deploy']);
-  grunt.registerTask('parse:deploy:prod', ['env:prod', 'parse:deploy']);
-
   grunt.registerTask('default', 'build:dev');
 
   grunt.registerTask('deploy:dev', [
     'build:dev',
     'aws_s3:dev',
-    'parse:deploy:dev',
     'clean'
   ]);
 
   grunt.registerTask('deploy:prod', [
     'build:prod',
     'aws_s3:prod',
-    'parse:deploy:prod',
     'clean'
   ]);
 };
