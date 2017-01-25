@@ -5,7 +5,6 @@ module.exports = function(grunt) {
     jshint: {
       files: [
         'app/**/*.js',
-        'admin/**/*.js',
         'test/**/*.js',
         'shared/**/*.js',
         'server/**/*.js'
@@ -53,7 +52,6 @@ module.exports = function(grunt) {
       files: [
         'Gruntfile.js',
         'app/**/*',
-        'admin/**/*',
         'shared/**/*',
         'server/**/*',
         'vendor/**/*',
@@ -65,8 +63,7 @@ module.exports = function(grunt) {
 
     sass: {
       options: {includePaths: ['.']},
-      app: {src: 'app/css/app.scss', dest: 'tmp/linksf.css'},
-      admin: {src: 'admin/css/admin.scss', dest: 'tmp/linksf_admin.css'}
+      app: {src: 'app/css/app.scss', dest: 'tmp/linksf.css'}
     },
 
     browserify: {
@@ -78,20 +75,11 @@ module.exports = function(grunt) {
           './shared/js/models/hours:cloud/models/hours',
           './shared/js/lib/categories:cloud/lib/categories'
         ]}
-      },
-      admin: {src: 'admin/js/admin.js', dest: 'tmp/admin.js',
-        options: {alias: [
-          './shared/js/models/facility:cloud/models/facility',
-          './shared/js/models/service:cloud/models/service',
-          './shared/js/models/hours:cloud/models/hours',
-          './shared/js/lib/categories:cloud/lib/categories'
-        ]}
       }
     },
 
     cssmin: {
-      app: {src: 'tmp/linksf.css', dest: 'tmp/linksf.css'},
-      admin: {src: 'tmp/linksf_admin.css', dest: 'tmp/linksf_admin.css'}
+      app: {src: 'tmp/linksf.css', dest: 'tmp/linksf.css'}
     },
 
     concat: {
@@ -134,28 +122,6 @@ module.exports = function(grunt) {
           'tmp/app.min.js'
         ],
         dest: 'tmp/linksf.js'
-      },
-
-      admin: {
-        src: [
-          '<%= concat.shared_js %>',
-          'vendor/js/backbone_filters.js',
-          'vendor/js/jquery.autosize.js',
-          'vendor/js/bootstrap.js',
-          'tmp/admin.js'
-        ],
-        dest: 'tmp/linksf_admin.js'
-      },
-
-      admin_min: {
-        src: [
-          '<%= concat.shared_js_minified %>',
-          'vendor/js/backbone_filters.min.js',
-          'vendor/js/jquery.autosize.min.js',
-          'vendor/js/bootstrap.min.js',
-          'tmp/admin.min.js'
-        ],
-        dest: 'tmp/linksf_admin.js'
       }
     },
 
@@ -173,8 +139,7 @@ module.exports = function(grunt) {
           'vendor/js/bootstrap-button.min.js': 'vendor/js/bootstrap-button.js'
         }
       },
-      app: {files: {'tmp/app.min.js': 'tmp/app.js'}},
-      admin: {files: {'tmp/admin.min.js': 'tmp/admin.js'}}
+      app: {files: {'tmp/app.min.js': 'tmp/app.js'}}
     },
 
     clean: {
@@ -187,17 +152,13 @@ module.exports = function(grunt) {
       all: {
         files: {src: [
           'tmp/linksf.js',
-          'tmp/linksf.css',
-          'tmp/linksf_admin.js',
-          'tmp/linksf_admin.css'
+          'tmp/linksf.css'
         ]},
         options: {
           complete: function(hashes) {
             var keyMap = {
               'tmp/linksf.js':        'appJs',
-              'tmp/linksf.css':       'appCss',
-              'tmp/linksf_admin.js':  'adminJs',
-              'tmp/linksf_admin.css': 'adminCss'
+              'tmp/linksf.css':       'appCss'
             };
 
             var config = {
@@ -217,10 +178,6 @@ module.exports = function(grunt) {
 
             grunt.file.write('build/index.html',
               grunt.template.process(grunt.file.read('app/index.html'), {data: config})
-            );
-
-            grunt.file.write('build/admin.html',
-              grunt.template.process(grunt.file.read('admin/index.html'), {data: config})
             );
 
             grunt.file.write('test/acceptance/app.html',
@@ -246,7 +203,7 @@ module.exports = function(grunt) {
         ]
       },
       all: {
-        src: ['tmp/linksf.css', 'tmp/linksf_admin.css']
+        src: ['tmp/linksf.css']
       }
     },
 
@@ -315,7 +272,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build:dev', [
     'env:dev',
     'build:common',
-    'concat:app', 'concat:admin',
+    'concat:app',
     'cachebuster',
     'qunit'
   ]);
@@ -324,7 +281,7 @@ module.exports = function(grunt) {
     'env:prod',
     'build:common',
     'cssmin', 'uglify',
-    'concat:app_min', 'concat:admin_min',
+    'concat:app_min',
     'cachebuster',
     'qunit'
   ]);
