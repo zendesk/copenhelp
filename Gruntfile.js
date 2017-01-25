@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
     sass: {
       options: {includePaths: ['.']},
-      app: {src: 'app/css/app.scss', dest: 'tmp/linksf.css'}
+      app: {src: 'app/css/app.scss', dest: 'tmp/copenhelp.css'}
     },
 
     browserify: {
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
-      app: {src: 'tmp/linksf.css', dest: 'tmp/linksf.css'}
+      app: {src: 'tmp/copenhelp.css', dest: 'tmp/copenhelp.css'}
     },
 
     concat: {
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
           'vendor/js/fastclick.js',
           'tmp/app.js'
         ],
-        dest: 'tmp/linksf.js'
+        dest: 'tmp/copenhelp.js'
       },
 
       app_min: {
@@ -119,7 +119,7 @@ module.exports = function(grunt) {
           'vendor/js/fastclick.min.js',
           'tmp/app.min.js'
         ],
-        dest: 'tmp/linksf.js'
+        dest: 'tmp/copenhelp.js'
       }
     },
 
@@ -149,14 +149,14 @@ module.exports = function(grunt) {
     cachebuster: {
       all: {
         files: {src: [
-          'tmp/linksf.js',
-          'tmp/linksf.css'
+          'tmp/copenhelp.js',
+          'tmp/copenhelp.css'
         ]},
         options: {
           complete: function(hashes) {
             var keyMap = {
-              'tmp/linksf.js':        'appJs',
-              'tmp/linksf.css':       'appCss'
+              'tmp/copenhelp.js':        'appJs',
+              'tmp/copenhelp.css':       'appCss'
             };
 
             var config = {
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
         ]
       },
       all: {
-        src: ['tmp/linksf.css']
+        src: ['tmp/copenhelp.css']
       }
     },
 
