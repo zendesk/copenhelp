@@ -1,6 +1,5 @@
 /* globals window */
-var Analytics             = require('../lib/analytics'),
-    Query                 = require('../lib/query'),
+var Query                 = require('../lib/query'),
     facilities            = require('../collections/facilities').instance(),
     searchParams          = ["fr"],
     parseParams           = require('../lib/query_param_parser'),
@@ -142,7 +141,6 @@ var ListView = Backbone.View.extend({
   },
 
   goToFilter: function() {
-    Analytics.trackListAction('options', { location: this.options.currentLocation, target: 'options' });
     var queryString = window.location.hash.substring(window.location.hash.indexOf('?')+1),
         router      = require('../../../app/js/routers/router').instance();
     Backbone.history.navigate("filter?" + queryString, {trigger: true});
@@ -187,7 +185,6 @@ var ListView = Backbone.View.extend({
       currentParams.filter.open = select.val() === 'yes';
     }
 
-    Analytics.trackListAction('toggle', { location: this.options.currentLocation, target: key });
     this._navigateFromQueryParams(currentParams, true);
   },
 

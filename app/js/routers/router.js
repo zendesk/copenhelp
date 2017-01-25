@@ -1,5 +1,4 @@
-var Analytics             = require('../../../shared/js/lib/analytics'),
-    BaseController        = require('../../../shared/js/lib/base_controller'),
+var BaseController        = require('../../../shared/js/lib/base_controller'),
     Storage               = require('../lib/storage'),
     applicationController = new BaseController({ el: '#linksf' }),
     facilities            = require('../../../shared/js/collections/facilities').instance(),
@@ -7,7 +6,7 @@ var Analytics             = require('../../../shared/js/lib/analytics'),
     parseParams           = require('../../../shared/js/lib/query_param_parser');
 
 var Router = Backbone.Router.extend({
-  beforeAllFilters: function() { return [ this.checkPrivateBrowsing, this.trackRoute ]; },
+  beforeAllFilters: function() { return [ this.checkPrivateBrowsing ]; },
 
   checkPrivateBrowsing: function() {
     // https://parse.com/questions/private-browsing-breaks-login-is-there-a-workaround
@@ -19,15 +18,6 @@ var Router = Backbone.Router.extend({
       Parse.localStorage = new Storage('local');
       return true;
     }
-  },
-
-  trackRoute: function(routeRegex) {
-    var match = routeRegex.toString().match(/\/\^(\w*)/);
-    if (match) {
-      var route = _.isEmpty(match[1]) ? 'index' : match[1];
-      Analytics.trackRoute(route);
-    }
-    return true;
   },
 
   routes: {
@@ -69,8 +59,6 @@ var Router = Backbone.Router.extend({
     fetchLocation().always(function(loc) {
       var hasLocation = loc && loc.lon && loc.lat;
       if (!hasLocation) return;
-
-      Analytics.trackLocation('homePage', loc);
     });
 
     return applicationController.render(indexView);
@@ -81,7 +69,6 @@ var Router = Backbone.Router.extend({
         ListView     = require('../../../shared/js/views/list_view');
     this.listView = this.listView || new ListView({ collection: facilities, isSingleton: true });
 
-    Analytics.trackQuery(parsedParams);
     applicationController.render(this.listView);
     if ( queryString === this.lastSearch ) { return; }
     this.lastSearch = queryString;
@@ -96,7 +83,6 @@ var Router = Backbone.Router.extend({
       if (loc.lon && loc.lat) {
         $.extend(queryParams, loc);
         this.listView.options.currentLocation = loc;
-        Analytics.trackLocation('query', loc, parsedParams);
       } else {
         // Default sort is near when navigating from index, unset it if location isn't available
         delete queryParams.sort;

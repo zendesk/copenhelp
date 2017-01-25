@@ -1,5 +1,4 @@
 var Features          = require('../lib/features'),
-    Analytics         = require('../../../shared/js/lib/analytics'),
     Hours             = require('cloud/models/hours'),
     fetchLocation     = require('../../../shared/js/lib/fetch_location'),
     calculateDistance = require('../../../shared/js/lib/distance').calculateDistance;
@@ -93,20 +92,10 @@ var DetailView = Backbone.View.extend({
     return this;
   },
 
-  trackCalling: function(event) {
-    Analytics.trackDetailsAction('call', { location: this.options.currentLocation, externalLinkTarget: this.model.name });
-  },
-
-  trackClickingWebsite: function(event) {
-    Analytics.trackDetailsAction('website', { location: this.options.currentLocation, externalLinkTarget: this.model.name });
-  },
-
   launchDirections: function() {
     var isIOS    = Features.isIOS(),
         isMobile = Features.isMobile(),
         facility = this.model;
-
-    Analytics.trackDetailsAction('directions', { location: this.options.currentLocation, externalLinkTarget: facility.name });
 
     if ( isIOS ) {
       document.location = directionsUrl(facility);

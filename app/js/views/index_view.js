@@ -1,5 +1,4 @@
-var Analytics     = require('../../../shared/js/lib/analytics'),
-    fetchLocation = require('../../../shared/js/lib/fetch_location'),
+var fetchLocation = require('../../../shared/js/lib/fetch_location'),
     navigate      = require('../../../shared/js/lib/navigate');
 
 var IndexView = Backbone.View.extend({
@@ -23,7 +22,6 @@ var IndexView = Backbone.View.extend({
   submit: function(event) {
     var category   = $(event.target).data('value'),
         categories = [ category ];
-        Analytics.trackHomepageAction(category);
 
     navigate({categories: categories, sort: "near"});
     return false;
