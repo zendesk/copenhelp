@@ -203,30 +203,6 @@ module.exports = function(grunt) {
       all: {
         src: ['tmp/copenhelp.css']
       }
-    },
-
-    s3: grunt.file.exists('s3.json') && grunt.file.readJSON('s3.json') || {},
-    aws_s3: {
-      options: {
-        accessKeyId: '<%= s3.accessKeyId %>',
-        secretAccessKey: '<%= s3.secretAccessKey %>',
-        region: '<%= s3.region %>',
-        uploadConcurrency: 4
-      },
-      dev: {
-        options: { bucket: '<%= s3.devBucket %>' },
-        files: [
-          {expand: true, src: ['vendor/font/**', 'img/**']},
-          {expand: true, cwd: 'build', src: '*', dest: '' }
-        ]
-      },
-      prod: {
-        options: { bucket: '<%= s3.prodBucket %>' },
-        files: [
-          {expand: true, src: ['vendor/font/**', 'img/**']},
-          {expand: true, cwd: 'build', src: '*', dest: ''}
-        ]
-      }
     }
   });
 
