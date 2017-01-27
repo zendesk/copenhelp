@@ -247,7 +247,7 @@ module.exports = function(grunt) {
     'cachebuster',
     'qunit'
   ]);
-  grunt.registerTask('default', 'build:dev');
+  grunt.registerTask('default', 'build:prod');
 
   grunt.registerTask('deploy:dev', [
     'build:dev',
