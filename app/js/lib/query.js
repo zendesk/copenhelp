@@ -12,7 +12,8 @@ var findByFilter = function(params) {
 
   facilities.forEach(function(data) {
     if(hasCategory(data,category)) {
-      filteredFacilities.push(convertFacility(data));
+      var facility = convertFacility(data);
+      filteredFacilities.push(facility);
     }
   });
 
@@ -25,9 +26,13 @@ var findByFilter = function(params) {
 };
 
 var hasCategory = function(data, category) {
-  var result = data.services.find(function(service) {
-    return service.category === category;
+  var services = data.services || data.attributes.services;
+
+  var result = services.find(function(service) {
+    var service_category = service.attributes && service.attributes.category || service.category;
+    return service_category === category;
   });
+
   return !!result;
 };
 
