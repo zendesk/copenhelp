@@ -141,7 +141,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      build: {src: 'build/*', filter: function(filepath) {return filepath !== 'build/.gitkeep';}},
+      build: {src: ['build/*', 'index.html'], filter: function(filepath) {return filepath !== 'build/.gitkeep';}},
       tmp: {src: 'tmp/*', filter: function(filepath) {return filepath !== 'tmp/.gitkeep'; }},
       test: {src: 'test/acceptance/app.html'}
     },
@@ -171,10 +171,10 @@ module.exports = function(grunt) {
               var outputFile = matches[1] + '-' + hashes[key] + matches[2];
 
               grunt.file.copy(key, 'build/' + outputFile);
-              config[keyMap[key]] = outputFile;
+              config[keyMap[key]] = 'build/' + outputFile;
             });
 
-            grunt.file.write('build/index.html',
+            grunt.file.write('index.html',
               grunt.template.process(grunt.file.read('app/index.html'), {data: config})
             );
 
