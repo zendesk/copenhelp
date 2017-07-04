@@ -1,5 +1,4 @@
 .header {
-  height: 64px;
   border-bottom: 1px solid rgb(204, 204, 204);
   display: flex;
   flex-direction: column;
@@ -29,6 +28,7 @@
 
 .logoContainer {
   flex-basis: 34%;
+  margin: 10px 0;
   text-align: center;
 }
 
@@ -57,10 +57,6 @@
 
 .backText {
   padding: 0 13.3px;
-}
-
-.logoImg {
-  height: 20px;
 }
 
 .filter {

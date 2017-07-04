@@ -49,7 +49,7 @@ class Navigation extends Component {
                 onClick={Link.handleClick}
                 className={s.logoImg}
                 role="link"
-                src="/link-sf.png"
+                src="/logo.svg"
                 alt="San Francisco website that connects homeless and low-income residents with critical and life-saving resources"
               />
             </Link>

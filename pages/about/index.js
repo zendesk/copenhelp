@@ -21,7 +21,7 @@ class AboutPage extends React.Component {
   render() {
     return (
       <Layout>
-        <img className={s.logo} src="/link-sf.png"/>
+        <img className={s.logo} src="/logo.svg"/>
         <div className={s.inset}>
           <p>
             Link-SF is San Francisco’s first mobile-optimized website that connects homeless and low-income residents with critical and life-saving resources nearby.  Focusing on basic services such as food, shelter, medical care, hygiene services, and technology access, Link-SF utilizes cutting-edge technology to stream the most up-to-date information to the people who need it most.  Link-SF was designed with three user groups in mind:  1) A growing population of low-income San Franciscans who rely on mobile technology to meet their basic needs, 2) Service providers who can use the most real-time data to direct clients in need, and 3) Everyday people who can use this information as a way to help refer San Francisco’s homeless population to a social service agency nearby.
