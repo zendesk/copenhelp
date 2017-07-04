@@ -1,44 +1,29 @@
-# Deploying Copenhelp
+# Deploying Link-SF
 
-Copenhelp has two major components, a parse.com backend and a static HTML/js/css component.
-We've gone with a combination of S3 and [fast.ly](http://www.fastly.com) to serve the static components,
-although really any old hosting provider could do.
-
+Link-SF has two major pieces, a firebase.com database and a static HTML/js/css app.  Both components are hosted and served by Firebase.  The database portion can be populated in a variety of ways, but this section will only cover deploying the static application.  For instructions on preparing your database, please see [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md).
 
 ### How to do it
 
-First, setup your `.env.dev` and `.env.prod` file as described in the 'Secrets' section of SETUP.md.
+Again, first make sure you have completed all of the steps in [Setup](https://github.com/zendesk/linksf/blob/master/docs/SETUP.md). Setup covers required tools as well as logging into your Firebase account.  
 
-Make a copy of the `s3.json.example` file (stripping off the `.example`) and replace with your Amazon S3 tokens (use the [`region` found here](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)). This will get you going with the credentials needed to push to S3.
+If you're deploying from a Unix system with Bash, you can use the pre-written deploy script.
 
-Next, download the parse command line tools as described here: https://parse.com/docs/cloud_code_guide
+`./script/deploy`
 
-```
-$ curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash
-```
+## Building your website
 
-ensure that you've run grunt -- it will generate the necessary parse configs:
+To build and pack your website into a singular, deployable bundle, we are using node.
 
-```
-$ cd copenhelp
-$ grunt
-```
+`node run build --release`
 
-now make sure that parse is accessible:
+## Deploying your Link-SF instance
 
-```
-$ cd server
-$ parse list
+Deploying is made simple with the Firebase CLI tools.
 
-Associated apps are:
-* Copenhelp
-  Copenhelp -- Development
+`firebase deploy`
 
-```
+If no errors appeared, your website should be live at the Hosting URL.  You can double check everything worked from the Hosting tab in your [Firebase Console](https://firebase.google.com/console).
 
-Finally, deploy away!
+## Connecting your custom domain
 
-```
-$ grunt deploy:dev
-$ grunt deploy:prod
-```
+If you have a custom domain you want to host your Link-SF instance under, visit the Hosting tab in your [Firebase Console](https://firebase.google.com/console), click the button reading "CONNECT CUSTOM DOMAIN", and follow through the prompts to verify ownership.
