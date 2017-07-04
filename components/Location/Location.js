@@ -66,23 +66,13 @@ const getMapsUrl = (location) => {
 }
 
 const DAYS = {
-  0: 'sunday',
-  1: 'monday',
-  2: 'tuesday',
-  3: 'wednesday',
-  4: 'thursday',
-  5: 'friday',
-  6: 'saturday',
-}
-
-const DAY = {
-  Sunday: 'sunday',
-  Monday: 'monday',
-  Tuesday: 'tuesday',
-  Wednesday: 'wednesday',
-  Thursday: 'thursday',
-  Friday: 'friday',
-  Saturday: 'saturday',
+  0: 'monday',
+  1: 'tuesday',
+  2: 'wednesday',
+  3: 'thursday',
+  4: 'friday',
+  5: 'saturday',
+  6: 'sunday'
 }
 
 const DAY_ABBREVIATIONS = {
@@ -95,32 +85,13 @@ const DAY_ABBREVIATIONS = {
   saturday: 'Sat',
 }
 
-const convertMilitaryTime = (time) => {
-  const hours = Math.floor(time / 100)
-  const mins = time % 100
-  let output = ''
-  if (hours < 12) {
-    if (hours == 0) {
-      output += 12
-    } else {
-      output += hours
-    }
-    if (mins > 0) {
-      output += `:${mins}`
-    }
-    output += 'am'
-  } else {
-    if (hours == 12) {
-      output += hours
-    } else {
-      output += hours - 12
-    }
-    if (mins > 0) {
-      output += `:${mins}`
-    }
-    output += 'pm'
-  }
-  return output
+const formatTime = (time) => {
+  const timeStr = `${time}`
+  const minutes = timeStr.slice(-2);
+  const hours = timeStr.length === 3 ? timeStr.slice(0, 1) : timeStr.slice(0, 2)
+
+
+  return `${hours}:${minutes}`;
 }
 
 const getDailySchedules = (schedules) => {
@@ -146,7 +117,7 @@ const getTimeRange = hours => {
   if (hours.opensAt == 0 && hours.closesAt == 2359 ) {
     return `24 hours`
   } else {
-    return `${convertMilitaryTime(hours.opensAt)} - ${convertMilitaryTime(hours.closesAt)}`
+    return `${formatTime(hours.opensAt)} - ${formatTime(hours.closesAt)}`
   }
 }
 
