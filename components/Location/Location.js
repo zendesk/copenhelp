@@ -52,14 +52,19 @@ const getAllEligibilities = (services) => {
   }
 }
 
-const getEligibility = ({ gender, age = [], cpr }) => {
-  if (gender === '' && age.length === 0) {
-    return getGender(gender)
-  }
+const getCPRString = (cprs = []) => {
+  const isCPRRequired = cprs.reduce((acc, value) => acc || value, false)
 
+  return isCPRRequired ? 'A Danish ID is required here.' : 'A Danish ID is not required here.'
+}
+
+const getEligibility = ({ gender, age = [], cpr }) => {
+  const cprString = getCPRString(cpr)
   const ages = age.map(getAge).join(', ')
 
-  return `${getGenderAdj(gender)} ${ages}`
+  return (gender === '' && age.length === 0) ?
+    `${getGender(gender)}; ${cprString}` :
+    `${getGenderAdj(gender)} ${ages}; ${getCPRString(cpr)}`
 }
 
 const getMapsUrl = (location) => {
