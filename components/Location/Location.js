@@ -87,11 +87,12 @@ const DAY_ABBREVIATIONS = {
 
 const formatTime = (time) => {
   const timeStr = `${time}`
-  const minutes = timeStr.slice(-2);
-  const hours = timeStr.length === 3 ? timeStr.slice(0, 1) : timeStr.slice(0, 2)
+  const paddedTimeStr = '0'.repeat(4 - timeStr.length) + timeStr
 
+  const minutes = paddedTimeStr.slice(-2)
+  const hours = paddedTimeStr.slice(0, 2)
 
-  return `${hours}:${minutes}`;
+  return `${hours}:${minutes}`
 }
 
 const getDailySchedules = (schedules) => {
