@@ -75,6 +75,14 @@ class ServiceEdit extends Component {
     this.updateService('eligibility', newEligibility)
   }
 
+  handleCPR = (value) => {
+    const { eligibility } = this.props.service
+    const newEligibility = eligibility
+
+    newEligibility.cpr = value
+    this.updateService('eligibility', newEligibility)
+  }
+
   getAgeClass = (value) => {
     let classes = [s.selectableButton]
     const { eligibility } = this.props.service
@@ -205,6 +213,11 @@ class ServiceEdit extends Component {
             getAgeClass={this.getAgeClass}
             handleAge={this.handleAge} />
         </div>
+        <div className={s.inputBox}>
+          <CPRBox
+            value={service.eligibility && service.eligibility.cpr}
+            handleCPR={this.handleCPR} />
+        </div>
         <div className={s.subsectionLabel}>
           Schedules
           <button
@@ -274,6 +287,25 @@ const AgeBox = (props) => (
     ))}
   </div>
 )
+
+const CPRBox = ({ value = false, handleCPR }) =>
+  <div className={(s.inputGroup, s.row)}>
+    <span className={s.inputLabel}>CPR Eligibility: </span>
+    <span className={s.inputOption}>
+      <ToggleButton
+        enabled={value === true}
+        onClick={() => handleCPR(true)}
+        label="Required"
+      />
+    </span>
+    <span className={s.inputOption}>
+      <ToggleButton
+        enabled={value === false}
+        onClick={() => handleCPR(false)}
+        label="Not required"
+      />
+    </span>
+  </div>
 
 const ScheduleBox = (props) => (
   <div className={s.inputGroup, s.row}>
