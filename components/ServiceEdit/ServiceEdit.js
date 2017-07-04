@@ -63,12 +63,12 @@ class ServiceEdit extends Component {
   handleAge = (value) => {
     const { eligibility } = this.props.service
     const newEligibility = eligibility
-    let newAge = newEligibility.age || ''
+    let newAge = newEligibility.age || []
 
     if (newAge.includes(value.key)) {
-      newAge = newAge.replace(value.key, '')
+      newAge = newAge.filter(age => age !== value.key)
     } else {
-      newAge = newAge + value.key
+      newAge = [...newAge, value.key];
     }
 
     newEligibility.age = newAge
@@ -78,7 +78,7 @@ class ServiceEdit extends Component {
   getAgeClass = (value) => {
     let classes = [s.selectableButton]
     const { eligibility } = this.props.service
-    let stateVal = eligibility ? (eligibility.age || '') : ''
+    let stateVal = eligibility ? (eligibility.age || []) : []
 
     return stateVal.includes(value.key)
   }
