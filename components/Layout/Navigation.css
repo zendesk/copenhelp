@@ -1,9 +1,10 @@
 .header {
+  align-items: stretch;
   border-bottom: 1px solid rgb(204, 204, 204);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  align-items: stretch;
+  margin-bottom: 20px;
 }
 
 .navTopSpace {
@@ -17,23 +18,20 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 9px;
 }
 
 .backContainer {
-  flex-basis: 33%;
   display: flex;
   align-items: center;
 }
 
 .logoContainer {
-  flex-basis: 34%;
+  flex: 1;
   margin: 10px 0;
   text-align: center;
 }
 
 .filterContainer {
-  flex-basis: 33%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -42,7 +40,7 @@
 .back {
   cursor: pointer;
   text-decoration: none;
-  color: rgb(0, 122, 255);
+  color: #fff;
   font-size: 17px;
   display: flex;
   align-items: center;
@@ -51,7 +49,7 @@
 .backArrow {
   width: 13px;
   height: 22px;
-  stroke: rgb(0, 122, 255);
+  stroke: #fff;
   stroke-width: 3px;
 }
 
@@ -62,7 +60,7 @@
 .filter {
   cursor: pointer;
   text-decoration: none;
-  color: rgb(0, 122, 255);
+  color: #fff;
   font-size: 17px;
   display: flex;
   align-items: center;
@@ -84,4 +82,12 @@
 
 .logout {
   float: right;
+}
+
+.banner {
+  background: #9a1104;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  width: 100%;
 }
