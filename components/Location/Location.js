@@ -35,22 +35,24 @@ const getAge = (abbr) => {
   }
 }
 
-const getAllGendersAndAges = (services) => {
-  const allGendersAndAges = Object.values(services)
+const getAllEligibilities = (services) => {
+  const allEligibilities = Object.values(services)
     .map(service => service.eligibility)
     .reduce((acc, eligibility) => {
-      const { gender, age } = acc
+      const { gender, age, cpr } = acc
       const moreGender = [...gender, eligibility.gender]
       const moreAge = eligibility.age ? [...age, ...eligibility.age] : age // ['C', 'Y']
-      return { gender: moreGender, age: moreAge }
-    }, { gender: [], age: [] })
+      const moreCpr = eligibility.cpr ? [...cpr, eligibility.cpr] : cpr
+      return { gender: moreGender, age: moreAge, cpr: moreCpr }
+    }, { gender: [], age: [], cpr: [] })
   return {
-    gender: Array.from(new Set(allGendersAndAges.gender)).join(''),
-    age: Array.from(new Set(allGendersAndAges.age)),
+    gender: Array.from(new Set(allEligibilities.gender)).join(''),
+    age: Array.from(new Set(allEligibilities.age)),
+    cpr: Array.from(new Set(allEligibilities.cpr)),
   }
 }
 
-const getEligibility = ({ gender, age = [] }) => {
+const getEligibility = ({ gender, age = [], cpr }) => {
   if (gender === '' && age.length === 0) {
     return getGender(gender)
   }
@@ -159,7 +161,7 @@ const Location = (props) => {
       <div className={s.section}>
         <h2 className={s.name}>{location.name}</h2>
         <span className={s.label}>Welcome: </span>
-          {getEligibility(getAllGendersAndAges(services))}
+          {getEligibility(getAllEligibilities(services))}
       </div>
       <p className={s.title}>Services</p>
       <div className={s.section}>
