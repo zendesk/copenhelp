@@ -1,14 +1,7 @@
 .row {
   display: flex;
-  align-items:flex-end;
-  border-bottom: 1px solid #DCDCDC;
+  justify-content: flex-end;
   padding: 10px;
-  background-color: rgb(238, 238, 238);
-}
-
-.filterOption {
-  display: flex;
-  flex-direction: column;
 }
 
 .btn {
