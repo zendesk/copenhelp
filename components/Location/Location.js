@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import s from './Location.css'
 import icons from '../../icons/css/icons.css'
 
-import { relevantTaxonomies, getIcon } from '../../lib/taxonomies'
+import { relevantTaxonomies, getIcon, getLabel } from '../../lib/taxonomies'
 import { capitalize } from '../../lib/stringHelpers'
 
 import Link from '../Link'
@@ -167,7 +167,7 @@ const Location = (props) => {
           {relevantTaxonomies(services).map((taxonomy, index) => (
             <span key={`category-${index}`}>
               <i className={`category-icon ${getIcon(taxonomy)}`}></i>
-              {capitalize(taxonomy)}
+              {getLabel(taxonomy)}
             </span>
           ))}
         </div>
