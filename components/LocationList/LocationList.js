@@ -4,7 +4,7 @@ import LocationRow from '../LocationRow'
 
 const LocationList = (props) => (
   <div className={s.column}>
-    {props.locations.map(LocationRow)}
+    {props.locations.map((location, index) => <LocationRow {...location} key={index} />)}
   </div>
 )
 
