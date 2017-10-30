@@ -9,9 +9,9 @@ class Footer extends React.Component {
         <Link className={s.nav} to="/terms">
           Terms
         </Link>
-        <Link className={s.nav} to="/feedback">
+        <a className={s.nav} href="https://copenhelp.zendesk.com/hc/requests/new">
           Feedback
-        </Link>
+        </a>
         <Link className={s.nav} to="/about">
           About
         </Link>
