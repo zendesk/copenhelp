@@ -8,7 +8,7 @@ function fetchDistanceAndDuration(origins, destinations) {
     durationInTraffic: true,
     avoidHighways: true,
     avoidTolls: false,
-    unitSystem: google.maps.UnitSystem.IMPERIAL,
+    unitSystem: google.maps.UnitSystem.METRIC,
   }
 
   return new Promise((resolve, reject) => {
