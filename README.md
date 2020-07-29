@@ -1,4 +1,6 @@
-## Link-SF [![Build Status](https://travis-ci.org/zendesk/linksf.svg?branch=master)](https://travis-ci.org/zendesk/linksf) [![Code Climate](https://codeclimate.com/github/zendesk/linksf.png)](https://codeclimate.com/github/zendesk/linksf)
+## Link-SF 
+![repo-checks](https://github.com/zendesk/copenhelp/workflows/repo-checks/badge.svg)
+ [![Code Climate](https://codeclimate.com/github/zendesk/linksf.png)](https://codeclimate.com/github/zendesk/linksf)
 
 ### Open Referral Transition
 This version of linksf is currently undergoing a data model transition to be HSDS compliant.
